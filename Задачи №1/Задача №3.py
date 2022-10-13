@@ -36,7 +36,7 @@ def is_valid_UCN(ucn, shoul_bypass_checksum=False):
     #x2	x4	x8	x5	x10	x9	x7	x3	x6	
     checkSumWeight = [2, 4, 8, 5, 10, 9, 7, 3, 6]
 
-    expectedCheckSum = sum([int(ucn[i])*checkSumWeight[i] for i in range(0,8)]) % 11
+    expectedCheckSum = sum([int(ucn[i])*checkSumWeight[i] for i in range(0,9)]) % 11
     if(expectedCheckSum == 10): expectedCheckSum = 0
 
     checkSum = int(ucn[9])
@@ -96,46 +96,46 @@ print(is_valid_UCN("6101057509") == True) #18
 #Check sum is incorrect
 print(is_valid_UCN(6101057509) == True)
 #Check sum is incorrect but it doesn't matter
-print(is_valid_UCN("6101057500", shoul_bypass_checksum=True) == True)
+print(is_valid_UCN(6101057500, shoul_bypass_checksum=True) == True)
 #Check sum is incorrect
-print(is_valid_UCN("6101057500") == False) #21
+print(is_valid_UCN(6101057500) == False) #21
 
 #Month is correct.
-print(is_valid_UCN("6910136669", True) == True)
+print(is_valid_UCN(6910136669, True) == True)
 #Month is incorrect. 13th month doesn't exist
-print(is_valid_UCN("6913136669", True) == False)
+print(is_valid_UCN(6913136669, True) == False)
 
 #Day is correct.
-print(is_valid_UCN("6910316669", True) == True) #24
+print(is_valid_UCN(6910316669, True) == True) #24
 #Day is correct. Year is leap
-print(is_valid_UCN("8002296669", True) == True)
+print(is_valid_UCN(8002296669, True) == True)
 
 #Day is correct.
-print(is_valid_UCN("9830316669", True) == True)
+print(is_valid_UCN(9830316669, True) == True)
 #Day is correct. Year is leap
-print(is_valid_UCN("9622296669", True) == True) #27
+print(is_valid_UCN(9622296669, True) == True) #27
 
 #Day is correct.
-print(is_valid_UCN("0450316669", True) == True)
+print(is_valid_UCN(1250316669, True) == True)
 #Day is correct. Year is leap
-print(is_valid_UCN("0442296669", True) == True)
+print(is_valid_UCN(1242296669, True) == True)
 
 #Day is incorrect. Not 31th day in September
-print(is_valid_UCN("6909316669", True) == False) #30
+print(is_valid_UCN(6909316669, True) == False) #30
 #Day is incorrect. Year is not leap. No 29th day in February
-print(is_valid_UCN("8102296669", True) == False)
+print(is_valid_UCN(8102296669, True) == False)
 
 #Day is incorrect. Not 31th day in September
-print(is_valid_UCN("9829316669", True) == False)
+print(is_valid_UCN(9829316669, True) == False)
 #Day is incorrect. Year is not leap. No 29th day in February
-print(is_valid_UCN("9722296669", True) == False) #33
+print(is_valid_UCN(9722296669, True) == False) #33
 
 #Day is incorrect. Not 31th day in September
-print(is_valid_UCN("0249316669", True) == False)
+print(is_valid_UCN(1349316669, True) == False)
 #Day is incorrect. Year is not leap. No 29th day in February
-print(is_valid_UCN("0342296669", True) == False)
+print(is_valid_UCN(1342296669, True) == False)
 
 #Correct
-print(is_valid_UCN("6101057509") == True) #36
+print(is_valid_UCN(6101057509) == True) #36
 
 
