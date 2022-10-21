@@ -4,15 +4,15 @@ from pickle import TRUE
 import string
 
 
-def is_valid_UCN(ucn, shoul_bypass_checksum=False):
+def is_valid_UCN(ucn, should_bypass_checksum=False):
     #Moje i direktno da go parsnem kum string poneje to ako veche e string taka ili inache shte si ostane string
     #ucn = str(ucn) 
     if(isinstance(ucn, int)): ucn = str(ucn) 
 
     #Luckily, these seem to work even when the string has a leading 0, so 09 gets converted to 9 for example
-    yearBorn = int(''.join([ucn[i] for i in range(0,2)]))
-    monthBorn = int(''.join([ucn[i] for i in range(2,4)]))
-    dayBorn = int(''.join([ucn[i] for i in range(4,6)]))
+    yearBorn = int(''.join(ucn[0:2])) #[ucn[i] for i in range(0,2)]
+    monthBorn = int(''.join(ucn[2:4])) #[ucn[i] for i in range(2,4)]
+    dayBorn = int(''.join(ucn[4:6])) #[ucn[i] for i in range(4,6)]
 
     born1800 = 21 <= monthBorn <= 32
     born1900 = 1 <= monthBorn <= 12
@@ -31,7 +31,7 @@ def is_valid_UCN(ucn, shoul_bypass_checksum=False):
     if(not(1 <= dayBorn <= daysInMonth[actualMonthBorn - 1])):
         return False
     
-    if(shoul_bypass_checksum): 
+    if(should_bypass_checksum): 
         return True
 
     #x2	x4	x8	x5	x10	x9	x7	x3	x6	
@@ -51,7 +51,7 @@ def is_valid_UCN(ucn, shoul_bypass_checksum=False):
 print(True if is_valid_UCN("6101057509") == True else 1) 
 
 #Check sum is incorrect but it doesn't matter
-print(True if is_valid_UCN("6101057500", shoul_bypass_checksum=True) == True else 2)
+print(True if is_valid_UCN("6101057500", should_bypass_checksum=True) == True else 2)
 
 #Check sum is incorrect
 print(True if is_valid_UCN("6101057500") == False else 3) #3
@@ -116,7 +116,7 @@ print(True if is_valid_UCN("6101057509") == True else 18) #18
 print(True if is_valid_UCN(6101057509) == True else 19)
 
 #Check sum is incorrect but it doesn't matter
-print(True if is_valid_UCN(6101057500, shoul_bypass_checksum=True) == True else 20)
+print(True if is_valid_UCN(6101057500, should_bypass_checksum=True) == True else 20)
 
 #Check sum is incorrect
 print(True if is_valid_UCN(6101057500) == False else 21) #21
