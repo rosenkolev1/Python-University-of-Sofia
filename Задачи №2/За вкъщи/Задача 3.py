@@ -92,6 +92,35 @@ class ProgressBar(UIElement):
         return f"[{Line(math.ceil(loadingContentLength * self.progress), '=').render() + Line(math.floor(loadingContentLength * (1 - self.progress)), '-').render()}]"
 
 
+# ui = Box(19,
+#     FancyText("WELCOME!"),
+#     Spacer(),
+#     Text("Loading packages:THIS SHOULD NOT BE SHOWN IN THE BOX"),
+#     HorizontalStack(
+#         Line(3),
+#         Spacer(),
+#         Text("cowsay")
+#     ),
+#     HorizontalStack(
+#         Line(3),
+#         Spacer(),
+#         Text("lolcat")
+#     ),
+#     HorizontalStack(
+#         Line(3, symbol=">"),
+#         Spacer(),
+#         Text("whoami"),
+#         Text("...")
+#     ),
+#     Spacer(),
+#     HorizontalStack(
+#         Spacer(),
+#         ProgressBar(15, 0.4),
+#         Spacer()
+#     )
+# )
+
+# print(ui.render())
 ui = Box(19,
     FancyText("WELCOME!"),
     Spacer(),
